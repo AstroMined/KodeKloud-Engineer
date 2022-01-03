@@ -1,0 +1,22 @@
+- name: replace text in files
+  hosts: stapp01, stapp02, stapp03
+  become: yes
+  tasks:
+    - name: blog.txt on stapp01
+      replace:
+        path: /opt/dba/blog.txt
+        regexp: "xFusionCorp"
+        replace: "Nautilus"
+      when: inventory_hostname == "stapp01"
+    - name: story.txt on stapp02
+      replace:
+        path: /opt/dba/story.txt
+        regexp: "Nautilus"
+        replace: "KodeKloud"
+      when: inventory_hostname == "stapp02"
+    - name: media.txt on stapp03
+      replace:
+        path: /opt/dba/media.txt
+        regexp: "KodeKloud"
+        replace: "xFusionCorp Industries"
+      when: inventory_hostname == "stapp03"

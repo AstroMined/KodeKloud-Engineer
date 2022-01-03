@@ -1,0 +1,8 @@
+- name: touch text file
+  hosts: stapp03
+  become: yes
+  tasks:
+    - name: file.txt on stapp03
+      file:
+        path: /tmp/file.txt
+        state: touch
