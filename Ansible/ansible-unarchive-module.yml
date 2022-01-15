@@ -1,0 +1,11 @@
+- name: extract archive and copy to hosts
+  hosts: stapp01, stapp02, stapp03
+  become: yes
+  tasks:
+    - name: extract archive file, set owner, set group
+      unarchive:
+        src: /usr/src/itadmin/xfusion.zip
+        dest: /opt/itadmin/
+        owner: "{{ ansible_user }}"
+        group: "{{ ansible_user }}"
+        mode: "0655"
